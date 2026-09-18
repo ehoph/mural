@@ -1,5 +1,3 @@
-package org.example;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,7 +8,7 @@ public class Conexao {
         +"&allowPublicKeyRetrieval=true"
             +"&serverTimezone=America/Sao_Paulo";
     private static final String USUARIO = "root";
-    private static final String SENHA = "";
+    private static final String SENHA = "senaisp";
     public static Connection abrir() throws SQLException{
         return DriverManager.getConnection(URL,USUARIO,SENHA);
     }

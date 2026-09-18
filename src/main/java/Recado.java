@@ -1,5 +1,3 @@
-package org.example;
-
 public class Recado {
     private final int id;
     private final String autor;

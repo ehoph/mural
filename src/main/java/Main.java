@@ -1,4 +1,4 @@
-package org.example;
+
 
 
 import com.sun.net.httpserver.HttpExchange;
@@ -15,9 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Main {
+public class  Main {
     private static final RecadoDAO DAO = new RecadoDAO();
-    static void main() throws Exception{
+    public static void main(String[] args) throws Exception{
        testarConexao();
 
         HttpServer servidor = HttpServer.create(new InetSocketAddress("0.0.0.0", 8080), 0);
@@ -89,7 +89,7 @@ public class Main {
                 );
         Map<String, String> dados = new HashMap<>();
         for(String campo : corpo.split("&")){
-            String[] partes = corpo.split("=", 2);
+            String[] partes = campo.split("=", 2);
             String nome = URLDecoder.decode(partes[0], StandardCharsets.UTF_8);
             String valor = partes.length == 2
                     ? URLDecoder.decode(partes[1], StandardCharsets.UTF_8)
@@ -109,7 +109,7 @@ public class Main {
                 return;
             }
             byte[] pagina = arquivo.readAllBytes();
-            troca.getRequestHeaders().set("Context-Type", "text/html; charset=UTF-8");
+            troca.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
             troca.sendResponseHeaders(200,pagina.length);
             troca.getResponseBody().write(pagina);
             troca.close();
